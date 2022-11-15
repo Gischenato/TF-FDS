@@ -1,4 +1,4 @@
-package com.trabfinal.rules.entity;
+package com.trabfinal.negocio.entidades;
 
 import java.util.Set;
 

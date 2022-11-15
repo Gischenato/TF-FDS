@@ -1,4 +1,4 @@
-package com.trabfinal.routes;
+package com.trabfinal.adaptadores.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
