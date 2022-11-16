@@ -17,11 +17,11 @@ public class AeroportoRepository implements IAeroportoRepository{
         this.aeroCRUD = aeroCRUD;  
     }  
 
-    public Aeroporto getAeroporto(int id) {
+    public Aeroporto findById(int id) {
         return this.aeroCRUD.findById(id);
     }
 
-    public List<Aeroporto> listAeroportos() {
+    public List<Aeroporto> findAll() {
         return this.aeroCRUD.findAll();
     }
 }

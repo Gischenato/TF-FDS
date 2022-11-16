@@ -23,15 +23,15 @@ public class ServicoRota {
     } 
 
     public Rota pegaRota(int id){
-        return eventoRota.getRota(id);
+        return eventoRota.findById(id);
     }
 
     public List<Integer> consultaRotas(int idDestino1, int idDestino2){
-        Aeroporto a1 = this.aeroRep.getAeroporto(idDestino1);
-        Aeroporto a2 = this.aeroRep.getAeroporto(idDestino2);
+        Aeroporto a1 = this.aeroRep.findById(idDestino1);
+        Aeroporto a2 = this.aeroRep.findById(idDestino2);
 
-        List<Rota> rotas = this.eventoRota.acharPelaOrigemEDestino(a1, a2);
-        List<Rota> rotas2 = this.eventoRota.acharPelaOrigemEDestino(a2, a1);
+        List<Rota> rotas =  this.eventoRota.findByOrigemAndDestino(a1, a2);
+        List<Rota> rotas2 = this.eventoRota.findByOrigemAndDestino(a2, a1);
 
         for (Rota rota : rotas2) {
             rotas.add(rota);
