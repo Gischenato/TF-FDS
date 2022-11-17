@@ -28,16 +28,17 @@ public class Aerovia {
     @JoinColumn(name="ponto_destino", referencedColumnName = "pontoId")
     private Ponto destino;
 
-    // @ManyToMany(cascade = CascadeType.ALL, mappedBy = "aerovias")
-    // private Set<Rota> rotas;
+    @Column(name = "distancia")
+    private int distancia;
 
     public Aerovia() {
     }
 
-    public Aerovia(int aeroviaId, Ponto origem, Ponto destino, String nome, String cidade) {
+    public Aerovia(int aeroviaId, Ponto origem, Ponto destino, String nome, String cidade, int distancia) {
         this.aeroviaId = aeroviaId;
         this.origem = origem;
         this.destino = destino;
+        this.distancia = distancia;
     }
 
     public int getId() {
@@ -50,6 +51,10 @@ public class Aerovia {
 
     public Ponto getDestino() {
         return destino;
+    }
+
+    public int getDistancia() {
+        return distancia;
     }
 
     // public Set<Rota> getRotas() {
@@ -66,6 +71,10 @@ public class Aerovia {
 
     public void setDestino(Ponto destino) {
         this.destino = destino;
+    }
+
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
     }
 
     // public void setRota(Set<Rota> rota) {

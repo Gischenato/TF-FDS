@@ -1,6 +1,6 @@
 package com.trabfinal.negocio.entidades;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,12 +22,12 @@ public class Voo {
     private Rota rota;
 
     @Column(name = "data", nullable = false)
-    private Date data;
+    private LocalDateTime data;
 
     public Voo() {
     }
 
-    public Voo(int vooId, Rota rota, Date data) {
+    public Voo(int vooId, Rota rota, LocalDateTime data) {
         this.vooId = vooId;
         this.rota = rota;
         this.data = data;
@@ -41,7 +41,7 @@ public class Voo {
         return rota;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
@@ -53,7 +53,7 @@ public class Voo {
         this.rota = rota;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 }
