@@ -1,4 +1,4 @@
-package com.trabfinal.adaptadores.repositorios;
+package com.trabfinal.adaptadores.repositorios.CRUD;
 
 import java.util.List;
 
@@ -11,12 +11,7 @@ import com.trabfinal.negocio.entidades.Aeroporto;
 import com.trabfinal.negocio.entidades.Rota;
 
 public interface IRotaCRUD extends JpaRepository<Rota, Integer> {
-    List<Rota> findAll();
-    Rota findById(int id);
-    
-    // @Query("SELECT R FROM Rota R WHERE R.origem LIKE %?1%")
-    // List<Rota> findByOrigemLike(int origem);
-    // // List<Rota> findByDestino(Aeroporto aeroporto);
-
+    // List<Rota> findAll();
+    // Rota findById(int id);
     List<Rota> findAllByOrigemAndDestino(Aeroporto origem, Aeroporto destino);
 }

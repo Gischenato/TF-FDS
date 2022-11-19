@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.trabfinal.adaptadores.repositorios.CRUD.IRotaCRUD;
 import com.trabfinal.negocio.entidades.Aeroporto;
 import com.trabfinal.negocio.entidades.Rota;
 import com.trabfinal.negocio.interfaces_repositorios.IRotaRepository;
@@ -18,13 +19,13 @@ public class RotaRepository implements IRotaRepository{
         this.rotaCRUD = rotaCRUD;  
     }  
 
-    public Rota findById(int id) {
-        return this.rotaCRUD.findById(id);
-    }
+    // public Rota findById(int id) {
+    //     return this.rotaCRUD.findById(id);
+    // }
 
-    public List<Rota> findAll() {
-        return this.rotaCRUD.findAll();
-    }
+    // public List<Rota> findAll() {
+    //     return this.rotaCRUD.findAll();
+    // }
 
     public List<Rota> findByOrigemAndDestino(Aeroporto origem, Aeroporto destino) {
         return this.rotaCRUD.findAllByOrigemAndDestino(origem, destino);

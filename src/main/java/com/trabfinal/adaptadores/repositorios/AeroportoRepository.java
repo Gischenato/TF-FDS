@@ -1,10 +1,11 @@
 package com.trabfinal.adaptadores.repositorios;
 
-import java.util.List;
+// import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.trabfinal.adaptadores.repositorios.CRUD.IAeroportoCRUD;
 import com.trabfinal.negocio.entidades.Aeroporto;
 import com.trabfinal.negocio.interfaces_repositorios.IAeroportoRepository;
 
@@ -21,7 +22,7 @@ public class AeroportoRepository implements IAeroportoRepository{
         return this.aeroCRUD.findById(id);
     }
 
-    public List<Aeroporto> findAll() {
-        return this.aeroCRUD.findAll();
-    }
+    // public List<Aeroporto> findAll() {
+    //     return this.aeroCRUD.findAll();
+    // }
 }
