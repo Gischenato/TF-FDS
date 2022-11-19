@@ -24,13 +24,17 @@ public class Voo {
     @Column(name = "data", nullable = false)
     private LocalDateTime data;
 
+    @Column(name = "status", nullable = false)
+    private String status;
+
     public Voo() {
     }
 
-    public Voo(int vooId, Rota rota, LocalDateTime data) {
+    public Voo(int vooId, Rota rota, LocalDateTime data, String status) {
         this.vooId = vooId;
         this.rota = rota;
         this.data = data;
+        this.status = status;
     }
 
     public int getId() {
@@ -45,6 +49,10 @@ public class Voo {
         return data;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setId(int vooId) {
         this.vooId = vooId;
     }
@@ -55,5 +63,9 @@ public class Voo {
 
     public void setData(LocalDateTime data) {
         this.data = data;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
