@@ -1,1 +1,1 @@
-mvn spring-boot:run
+mvn clean compile spring-boot:run
