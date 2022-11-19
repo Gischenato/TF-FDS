@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.trabfinal.adaptadores.repositorios.CRUD.IVooCRUD;
 import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
+import com.trabfinal.negocio.entidades.Voo;
 
 @Component
 public class VooRepository implements IVooRepository{
@@ -13,5 +14,9 @@ public class VooRepository implements IVooRepository{
     @Autowired
     public VooRepository(IVooCRUD vooCRUD) {
         this.vooCRUD = vooCRUD;  
-    }  
+    } 
+
+    public Voo cancelFlight(int id) {
+        return this.vooCRUD.cancelFlight(id);
+    }
 }
