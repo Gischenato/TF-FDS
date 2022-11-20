@@ -1,6 +1,8 @@
 package com.trabfinal.adaptadores.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +22,10 @@ public class ControladorVoos {
 
     @PostMapping("/voos/plano")
     @CrossOrigin(origins = "*")
-    public String consultaRotas(@RequestBody BodyVerificaPlanVooDTO plano) {
-        return this.verificarPlanoDeVooUC.verificarPlanoDeVoo(plano);
+    public ResponseEntity<String> consultaRotas(@RequestBody BodyVerificaPlanVooDTO plano) {
+        String res = this.verificarPlanoDeVooUC.verificarPlanoDeVoo(plano);
+        if(res.equals("OK")) return new ResponseEntity<String>(res, HttpStatus.OK);
+        return new ResponseEntity<String>(res, HttpStatus.BAD_REQUEST);
     }
 
 }

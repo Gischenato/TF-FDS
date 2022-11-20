@@ -27,8 +27,13 @@ public class ServicoAluguel {
     public Map<Integer, Boolean> consultarAerovia(int id, String data) {
         var aerovia = aeroviaRep.findById(id);
         
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
-        LocalDateTime dateTime = LocalDateTime.parse(data, formatter);
+        LocalDateTime dateTime;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH");
+            dateTime = LocalDateTime.parse(data, formatter);
+        } catch(Exception e) {
+            return null;
+        }
         
         var alugueis = aluguelRep.findAllByAeroviaIdAndData(aerovia, dateTime);
         

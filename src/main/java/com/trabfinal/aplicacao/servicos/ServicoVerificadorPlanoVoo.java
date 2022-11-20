@@ -3,25 +3,27 @@ package com.trabfinal.aplicacao.servicos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trabfinal.aplicacao.dtos.BodyVerificaPlanVooDTO;
+import com.trabfinal.negocio.entidades.Aerovia;
 import com.trabfinal.negocio.entidades.Voo;
-import com.trabfinal.negocio.interfaces_repositorios.IRotaRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
+import com.trabfinal.negocio.servicos.ServicoAluguel;
 
 @Component
 public class ServicoVerificadorPlanoVoo {
     private IVooRepository vooRep;
-    private IRotaRepository rotaRep;
+    private ServicoAluguel servAluguel;
 
 
     @Autowired
-    public ServicoVerificadorPlanoVoo(IVooRepository vooRep, IRotaRepository rotaRep) {
+    public ServicoVerificadorPlanoVoo(IVooRepository vooRep, ServicoAluguel servAluguel) {
         this.vooRep = vooRep;
-        this.rotaRep = rotaRep;
+        this.servAluguel = servAluguel;
     }
 
     public String verificaPlanoDeVoo(BodyVerificaPlanVooDTO plano){
@@ -47,15 +49,18 @@ public class ServicoVerificadorPlanoVoo {
 
         if(voo == null) return "Erro: Voo não achado no banco de dados.";
 
-        if(voo.getRota().getId() != plano.getRotaId()) return "Erro: Rota informada não é a mesma que a anexada ao voo.";
-
         if(plano.getVelocidade() < 0) return "Erro: Velocidade não pode ser negativa.";
 
         if(plano.getAltitude() < 25000 || plano.getAltitude() > 35000) return "Erro: Altitude tem que estar entre 25000 e 35000.";
 
-        voo.getRota().getAerovias().stream().forEach(a -> {
-
-        });
+        for (Aerovia aerovia : voo.getRota().getAerovias()) {
+            Map<Integer, Boolean> alugeis = servAluguel.consultarAerovia(aerovia.getId(), String.format("%s %s", plano.getData(), plano.getHorario().split(":")[0]));
+            for (int altitude : alugeis.keySet()) {
+                if(altitude == plano.getAltitude() && !alugeis.get(altitude)) {
+                    return "Erro: Aerovia já está alugada nesse horário";
+                }
+            }
+        }
 
         return "OK";
     }   
