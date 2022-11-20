@@ -22,10 +22,6 @@ public class ServicoRota {
         this.aeroRep = aeroRep;
     } 
 
-    // public Rota pegaRota(int id){
-    //     return rotaRep.findById(id);
-    // }
-
     public List<Integer> consultaRotas(int idDestino1, int idDestino2){
         Aeroporto a1 = this.aeroRep.findById(idDestino1);
         Aeroporto a2 = this.aeroRep.findById(idDestino2);
