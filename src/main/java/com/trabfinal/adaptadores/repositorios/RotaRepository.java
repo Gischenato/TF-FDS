@@ -19,9 +19,9 @@ public class RotaRepository implements IRotaRepository{
         this.rotaCRUD = rotaCRUD;  
     }  
 
-    // public Rota findById(int id) {
-    //     return this.rotaCRUD.findById(id);
-    // }
+    public Rota findById(int id) {
+        return this.rotaCRUD.findById(id);
+    }
 
     // public List<Rota> findAll() {
     //     return this.rotaCRUD.findAll();

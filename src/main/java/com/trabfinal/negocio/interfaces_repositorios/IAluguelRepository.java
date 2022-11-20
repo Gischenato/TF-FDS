@@ -10,4 +10,6 @@ import com.trabfinal.negocio.entidades.Voo;
 public interface IAluguelRepository {
    List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
    void deleteAllByVooId(Voo id);
+   List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);   
+   Aluguel save(Aluguel aluguel);
 }

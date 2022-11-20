@@ -1,12 +1,12 @@
 package com.trabfinal.negocio.servicos;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.trabfinal.negocio.entidades.Aerovia;
 import com.trabfinal.negocio.interfaces_repositorios.IAeroviaRepository;
 
-@Component
+@Service
 public class ServicoAerovia {
     private IAeroviaRepository aeroviaRep;
 

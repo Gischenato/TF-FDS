@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.trabfinal.aplicacao.dtos.BodyVerificaPlanVooDTO;
 import com.trabfinal.negocio.entidades.Aerovia;
@@ -14,7 +14,7 @@ import com.trabfinal.negocio.entidades.Voo;
 import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
 import com.trabfinal.negocio.servicos.ServicoAluguel;
 
-@Component
+@Service
 public class ServicoVerificadorPlanoVoo {
     private IVooRepository vooRep;
     private ServicoAluguel servAluguel;

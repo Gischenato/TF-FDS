@@ -28,6 +28,16 @@ public class AluguelRepository implements IAluguelRepository{
     }
     
     @Override
+    public List<Aluguel> findAllByAeroviaId(Aerovia id) {
+        return this.aluguelCRUD.findAllByAeroviaId(id);
+    }
+
+    @Override
+    public Aluguel save(Aluguel aluguel) {
+        return this.aluguelCRUD.save(aluguel);
+    }  
+    
+    @Override
     public void deleteAllByVooId(Voo id) {
         aluguelCRUD.deleteAllByVooId(id);
     } 

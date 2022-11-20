@@ -12,4 +12,6 @@ import com.trabfinal.negocio.entidades.Voo;
 public interface IAluguelCRUD extends JpaRepository<Aluguel, Integer>{
     List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
     void deleteAllByVooId(Voo id);
+    List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);
+    <S extends Aluguel> S save(S aluguel);
 }
