@@ -1,6 +1,6 @@
 package com.trabfinal.negocio.entidades;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class Aluguel {
     private Voo vooId;
 
     @Column(name = "data", nullable = false)
-    private Date data;
+    private LocalDateTime data;
     
     @Column(name = "altitude", nullable = false)
     private int altitude;
@@ -30,7 +30,7 @@ public class Aluguel {
     public Aluguel() {
     }
 
-    public Aluguel(int aluguelId, Aerovia aeroviaId, Voo vooId, Date data, int altitude, int velocidade) {
+    public Aluguel(int aluguelId, Aerovia aeroviaId, Voo vooId, LocalDateTime data, int altitude, int velocidade) {
         this.aluguelId = aluguelId;
         this.aeroviaId = aeroviaId;
         this.vooId = vooId;
@@ -50,7 +50,7 @@ public class Aluguel {
         return vooId;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
@@ -70,7 +70,7 @@ public class Aluguel {
         this.vooId = vooId;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
