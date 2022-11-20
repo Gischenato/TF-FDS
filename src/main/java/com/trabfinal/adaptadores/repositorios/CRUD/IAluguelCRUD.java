@@ -11,4 +11,5 @@ import com.trabfinal.negocio.entidades.Aluguel;
 public interface IAluguelCRUD extends JpaRepository<Aluguel, Integer>{
     List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
     List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);
+    <S extends Aluguel> S save(S aluguel);
 }

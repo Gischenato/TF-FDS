@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,6 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Aluguel {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int aluguelId;
     
     @ManyToOne
@@ -32,6 +35,13 @@ public class Aluguel {
 
     public Aluguel(int aluguelId, Aerovia aeroviaId, Voo vooId, LocalDateTime data, int altitude, int velocidade) {
         this.aluguelId = aluguelId;
+        this.aeroviaId = aeroviaId;
+        this.vooId = vooId;
+        this.data = data;
+        this.altitude = altitude;
+    }
+
+    public Aluguel(Aerovia aeroviaId, Voo vooId, LocalDateTime data, int altitude, int velocidade) {
         this.aeroviaId = aeroviaId;
         this.vooId = vooId;
         this.data = data;

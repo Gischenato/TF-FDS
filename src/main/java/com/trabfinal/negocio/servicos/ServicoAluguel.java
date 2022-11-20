@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.trabfinal.negocio.entidades.Aluguel;
 import com.trabfinal.negocio.interfaces_repositorios.IAeroviaRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IAluguelRepository;
 
-@Component
+@Service
 public class ServicoAluguel {
     private IAluguelRepository aluguelRep;
     private IAeroviaRepository aeroviaRep;

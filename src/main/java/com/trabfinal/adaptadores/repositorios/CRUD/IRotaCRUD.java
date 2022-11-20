@@ -12,6 +12,6 @@ import com.trabfinal.negocio.entidades.Rota;
 
 public interface IRotaCRUD extends JpaRepository<Rota, Integer> {
     // List<Rota> findAll();
-    // Rota findById(int id);
+    Rota findById(int id);
     List<Rota> findAllByOrigemAndDestino(Aeroporto origem, Aeroporto destino);
 }

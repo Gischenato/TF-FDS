@@ -9,4 +9,5 @@ import com.trabfinal.negocio.entidades.Aluguel;
 public interface IAluguelRepository {
    List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
    List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);   
+   Aluguel save(Aluguel aluguel);
 }

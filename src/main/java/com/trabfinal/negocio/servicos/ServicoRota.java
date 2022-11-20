@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.trabfinal.negocio.entidades.Aeroporto;
 import com.trabfinal.negocio.entidades.Rota;
 import com.trabfinal.negocio.interfaces_repositorios.IAeroportoRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IRotaRepository;
 
-@Component
+@Service
 public class ServicoRota {
     private IRotaRepository rotaRep;
     private IAeroportoRepository aeroRep;
