@@ -49,6 +49,8 @@ public class ServicoVerificadorPlanoVoo {
 
         if(voo == null) return "Erro: Voo não achado no banco de dados.";
 
+        if(!voo.getStatus().equals("PENDENTE")) return "Erro: O plano de voo precisa estar pendente para ser verificado.";
+
         if(plano.getVelocidade() < 0) return "Erro: Velocidade não pode ser negativa.";
 
         if(plano.getAltitude() < 25000 || plano.getAltitude() > 35000) return "Erro: Altitude tem que estar entre 25000 e 35000.";

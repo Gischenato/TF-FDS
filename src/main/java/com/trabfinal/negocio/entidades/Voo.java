@@ -24,16 +24,21 @@ public class Voo {
     @Column(name = "data", nullable = false)
     private LocalDateTime data;
 
+    @Column(name= "velocidade", nullable = false)
+    private int velocidade;
+
     @Column(name = "status", nullable = false)
     private String status;
+
 
     public Voo() {
     }
 
-    public Voo(int vooId, Rota rota, LocalDateTime data, String status) {
+    public Voo(int vooId, Rota rota, LocalDateTime data, int velocidade, String status) {
         this.vooId = vooId;
         this.rota = rota;
         this.data = data;
+        this.velocidade = velocidade;
         this.status = status;
     }
 
@@ -53,6 +58,10 @@ public class Voo {
         return status;
     }
 
+    public int getVelocidade() {
+        return velocidade;
+    }
+    
     public void setId(int vooId) {
         this.vooId = vooId;
     }
@@ -67,5 +76,9 @@ public class Voo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
     }
 }
