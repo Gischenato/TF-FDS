@@ -23,10 +23,6 @@ public class RotaRepository implements IRotaRepository{
         return this.rotaCRUD.findById(id);
     }
 
-    // public List<Rota> findAll() {
-    //     return this.rotaCRUD.findAll();
-    // }
-
     public List<Rota> findByOrigemAndDestino(Aeroporto origem, Aeroporto destino) {
         return this.rotaCRUD.findAllByOrigemAndDestino(origem, destino);
     }
