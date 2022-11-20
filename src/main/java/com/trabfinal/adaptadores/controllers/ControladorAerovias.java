@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trabfinal.aplicacao.casosDeUso.ConsultarAeroviasUC;
+import com.trabfinal.aplicacao.dtos.BodyRelatorioDTO;
 import com.trabfinal.aplicacao.dtos.BodySlotsDTO;
 
 
@@ -29,6 +30,12 @@ public class ControladorAerovias {
         Map<Integer, Boolean> res = this.consultaAeroviasUc.consultarAerovia(body.getidAerovia(), body.getdata()+" "+body.gethora());
         if(res != null) return new ResponseEntity<Map<Integer, Boolean>>(res, HttpStatus.OK);
         return new ResponseEntity<Map<Integer, Boolean>>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/aerovias/relatorio")
+    @CrossOrigin(origins = "*")
+    public Map<Integer, Integer> relatorio(@RequestBody BodyRelatorioDTO body) {
+        return this.consultaAeroviasUc.gerarRelatorio(body.getAeroviaId(), body.getData());
     }
     
 }
