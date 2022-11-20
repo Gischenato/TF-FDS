@@ -8,16 +8,10 @@ import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
 
 @Service
 public class ServicoVoo {
-    private IVooRepository vooRep;
-    private IAeroviaRepository aeroRep;
 
     @Autowired
     public ServicoVoo(IVooRepository vooRep, IAeroviaRepository aeroRep){
-        this.vooRep = vooRep;
-        this.aeroRep = aeroRep;
+
     } 
 
-    public boolean liberaVoo(int vooId, int altitude){
-        return true;
-    }
 }

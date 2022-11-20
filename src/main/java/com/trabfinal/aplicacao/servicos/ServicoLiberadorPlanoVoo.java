@@ -59,7 +59,7 @@ public class ServicoLiberadorPlanoVoo {
         for (Aerovia aerovia : aerovias) {
             double tempoNaAerovia = this.calculos.calculaTempoNaAerovia(tempo, aerovia.getDistancia(), tamanhoAerovias);
             int qtdSlots = (int) Math.ceil(tempoNaAerovia);
-
+        
             for (int i = 0; i < qtdSlots; i++) {
                 LocalDateTime data = voo.getData();
                 data = data.plusHours(cont++);
