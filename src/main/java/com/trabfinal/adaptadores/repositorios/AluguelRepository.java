@@ -10,6 +10,7 @@ import com.trabfinal.adaptadores.repositorios.CRUD.IAeroviaCRUD;
 import com.trabfinal.adaptadores.repositorios.CRUD.IAluguelCRUD;
 import com.trabfinal.negocio.entidades.Aerovia;
 import com.trabfinal.negocio.entidades.Aluguel;
+import com.trabfinal.negocio.entidades.Voo;
 import com.trabfinal.negocio.interfaces_repositorios.IAluguelRepository;
 
 @Component
@@ -27,7 +28,7 @@ public class AluguelRepository implements IAluguelRepository{
     }
     
     @Override
-    public List<Aluguel> findAllByAeroviaId(Aerovia id) {
-        return this.aluguelCRUD.findAllByAeroviaId(id);
-    }  
+    public void deleteAllByVooId(Voo id) {
+        aluguelCRUD.deleteAllByVooId(id);
+    } 
 }

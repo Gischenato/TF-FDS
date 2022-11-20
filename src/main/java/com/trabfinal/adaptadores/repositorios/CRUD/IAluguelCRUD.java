@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.trabfinal.negocio.entidades.Aerovia;
 import com.trabfinal.negocio.entidades.Aluguel;
+import com.trabfinal.negocio.entidades.Voo;
 
 public interface IAluguelCRUD extends JpaRepository<Aluguel, Integer>{
     List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
-    List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);
+    void deleteAllByVooId(Voo id);
 }

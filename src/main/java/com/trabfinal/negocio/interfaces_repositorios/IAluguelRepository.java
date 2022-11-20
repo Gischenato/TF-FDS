@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.trabfinal.negocio.entidades.Aerovia;
 import com.trabfinal.negocio.entidades.Aluguel;
+import com.trabfinal.negocio.entidades.Voo;
 
 public interface IAluguelRepository {
    List<Aluguel> findAllByAeroviaIdAndData(Aerovia aeroviaId, LocalDateTime data);
-   List<Aluguel> findAllByAeroviaId(Aerovia aeroviaId);   
+   void deleteAllByVooId(Voo id);
 }

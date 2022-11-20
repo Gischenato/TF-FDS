@@ -8,21 +8,34 @@ import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.trabfinal.negocio.entidades.Aluguel;
 import com.trabfinal.negocio.interfaces_repositorios.IAeroviaRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IAluguelRepository;
+import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
 
-@Component
+@Service
+@Transactional
 public class ServicoAluguel {
     private IAluguelRepository aluguelRep;
     private IAeroviaRepository aeroviaRep;
+    private IVooRepository vooRep;
 
     @Autowired
-    public ServicoAluguel(IAluguelRepository aluguelRep, IAeroviaRepository aeroviaRep) {
+    public ServicoAluguel(IAluguelRepository aluguelRep, IAeroviaRepository aeroviaRep, IVooRepository vooRep) {
         this.aluguelRep = aluguelRep;
         this.aeroviaRep = aeroviaRep;
+        this.vooRep = vooRep;
     } 
+
+    public void cancelaAluguel(int vooId){
+        var voo = vooRep.findById(vooId);
+        if (voo == null) throw new Error("Voo nao encontrado");
+        aluguelRep.deleteAllByVooId(voo);
+        voo.setStatus("CANCELADO");
+    }
 
     public Map<Integer, Boolean> consultarAerovia(int id, String data) {
         var aerovia = aeroviaRep.findById(id);
