@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import com.trabfinal.negocio.interfaces_repositorios.IAluguelRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
 
 @Service
+@Transactional
 public class ServicoVoo {
     private IVooRepository vooRep;
     private IAluguelRepository aluguelRep;
@@ -71,6 +74,8 @@ public class ServicoVoo {
             }
         }
 
+        voo.setStatus("LIBERADO");
+        
         List<AluguelLiberarPlanoDTO> alugueisDTO = new ArrayList<AluguelLiberarPlanoDTO>();
         for (Aluguel aluguel : alugueis) {
             alugueisDTO.add(new AluguelLiberarPlanoDTO(aluguel.getId(),aluguel.getAeroviaId().getId(),aluguel.getVooId().getId(),aluguel.getData().toString(),aluguel.getAltitude()));
