@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trabfinal.aplicacao.dtos.AluguelLiberarPlanoDTO;
-import com.trabfinal.aplicacao.servicos.ServicoLiberadorPlanoVoo;
+import com.trabfinal.negocio.servicos.ServicoVoo;
 
 @Component
 public class LiberarPlanoDeVooUC {
-    private ServicoLiberadorPlanoVoo servicoLibVoo;
+    private ServicoVoo servicoVoo;
 
     @Autowired
-    public LiberarPlanoDeVooUC(ServicoLiberadorPlanoVoo servicoLibVoo) {
-        this.servicoLibVoo = servicoLibVoo;
+    public LiberarPlanoDeVooUC(ServicoVoo servicoVoo) {
+        this.servicoVoo = servicoVoo;
     }
 
     public List<AluguelLiberarPlanoDTO> liberarPlanoDeVoo(int vooId, int altitude){
-        return this.servicoLibVoo.liberaVoo(vooId, altitude);
+        return this.servicoVoo.liberaVoo(vooId, altitude);
     }   
 }

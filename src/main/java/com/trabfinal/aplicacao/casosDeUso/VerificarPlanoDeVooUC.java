@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.trabfinal.aplicacao.dtos.BodyVerificaPlanVooDTO;
-import com.trabfinal.aplicacao.servicos.ServicoVerificadorPlanoVoo;
+import com.trabfinal.negocio.servicos.ServicoVoo;
 
 @Component
 public class VerificarPlanoDeVooUC {
-    private ServicoVerificadorPlanoVoo servicoVerificadorVoo;
+    private ServicoVoo servicoVoo;
 
     @Autowired
-    public VerificarPlanoDeVooUC(ServicoVerificadorPlanoVoo servicoVerificadorVoo) {
-        this.servicoVerificadorVoo = servicoVerificadorVoo;
+    public VerificarPlanoDeVooUC(ServicoVoo servicoVerificadorVoo) {
+        this.servicoVoo = servicoVerificadorVoo;
     }
 
     public String verificarPlanoDeVoo(BodyVerificaPlanVooDTO plano){
-        return servicoVerificadorVoo.verificaPlanoDeVoo(plano);
+        return servicoVoo.verificaPlanoDeVoo(plano);
     }   
 }

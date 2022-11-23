@@ -1,8 +1,11 @@
-package com.trabfinal.aplicacao.servicos;
-
+package com.trabfinal.negocio.servicos;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +20,18 @@ import com.trabfinal.negocio.interfaces_repositorios.IAluguelRepository;
 import com.trabfinal.negocio.interfaces_repositorios.IVooRepository;
 
 @Service
-public class ServicoLiberadorPlanoVoo {
+public class ServicoVoo {
     private IVooRepository vooRep;
     private IAluguelRepository aluguelRep;
     private ServicoDeCalculos calculos;
-    private ServicoVerificadorPlanoVoo serVerVoo;
+    private ServicoAluguel servAluguel;
 
     @Autowired
-    public ServicoLiberadorPlanoVoo(IVooRepository vooRep, IAluguelRepository aluguelRep, ServicoDeCalculos calculos, ServicoVerificadorPlanoVoo serVerVoo){
+    public ServicoVoo(IVooRepository vooRep, IAluguelRepository aluguelRep, ServicoDeCalculos calculos, ServicoAluguel servAluguel){
         this.vooRep = vooRep;
         this.aluguelRep = aluguelRep;
         this.calculos = calculos;
-        this.serVerVoo = serVerVoo;
+        this.servAluguel = servAluguel;
     } 
 
     public List<AluguelLiberarPlanoDTO> liberaVoo(int vooId, int altitude){
@@ -52,7 +55,7 @@ public class ServicoLiberadorPlanoVoo {
 
         String[] dataHora = voo.getData().toString().split("T"); 
         BodyVerificaPlanVooDTO bodyVerifica = new BodyVerificaPlanVooDTO(dataHora[0], dataHora[1].substring(0, 5), vooId, voo.getVelocidade(), altitude);
-        String verifica = this.serVerVoo.verificaPlanoDeVoo(bodyVerifica);
+        String verifica = this.verificaPlanoDeVoo(bodyVerifica);
 
         if(!verifica.equals("OK")) return null;
         int cont = 0;
@@ -74,4 +77,45 @@ public class ServicoLiberadorPlanoVoo {
         }
         return alugueisDTO;
     }
+
+    public String verificaPlanoDeVoo(BodyVerificaPlanVooDTO plano){
+        DateTimeFormatter formatadorDeData = DateTimeFormatter
+        .ofPattern("yyyy-MM-dd");
+
+        try {
+            LocalDate.parse(plano.getData(), formatadorDeData);
+        } catch (Exception e) {
+            return "Erro: Tipo de data invalido, ela deve seguir o formato: yyyy-MM-dd.";
+        }
+
+        DateTimeFormatter formatadorDeHorario = DateTimeFormatter
+        .ofPattern("HH:mm");
+
+        try {
+            LocalTime.parse(plano.getHorario(), formatadorDeHorario);
+        } catch (Exception e) {
+            return "Erro: Tipo de horario invalido, ele deve seguir o formato: HH:mm.";
+        }
+
+        Voo voo = this.vooRep.findById(plano.getVoo());
+
+        if(voo == null) return "Erro: Voo não achado no banco de dados.";
+
+        if(!voo.getStatus().equals("PENDENTE")) return "Erro: O plano de voo precisa estar pendente para ser verificado.";
+
+        if(plano.getVelocidade() < 0) return "Erro: Velocidade não pode ser negativa.";
+
+        if(plano.getAltitude() < 25000 || plano.getAltitude() > 35000) return "Erro: Altitude tem que estar entre 25000 e 35000.";
+
+        for (Aerovia aerovia : voo.getRota().getAerovias()) {
+            Map<Integer, Boolean> alugeis = servAluguel.consultarAerovia(aerovia.getId(), String.format("%s %s", plano.getData(), plano.getHorario().split(":")[0]));
+            for (int altitude : alugeis.keySet()) {
+                if(altitude == plano.getAltitude() && !alugeis.get(altitude)) {
+                    return "Erro: Aerovia já está alugada nesse horário";
+                }
+            }
+        }
+
+        return "OK";
+    }   
 }

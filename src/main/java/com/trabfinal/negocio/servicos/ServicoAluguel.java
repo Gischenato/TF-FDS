@@ -46,9 +46,10 @@ public class ServicoAluguel {
         } catch(Exception e) {
             return null;
         }
-        
+        System.out.println(dateTime.toString());
         var alugueis = aluguelRep.findAllByAeroviaIdAndData(aerovia, dateTime);
-        
+        System.out.println(alugueis);
+
         ArrayList<Integer> altitudesOcupadas = new ArrayList<Integer>();
         for (Aluguel aluguel : alugueis)
             altitudesOcupadas.add(aluguel.getAltitude());

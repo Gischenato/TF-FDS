@@ -35,14 +35,15 @@ public class ServicoAerovia {
             slots.put(i, 0);
         for (int i = 0; i<24; i++){
             LocalDateTime dateTime = LocalDateTime.parse(data+" "+(i < 10 ? "0"+i : i), formatter);
-            Aerovia aerovia = aeroviaRep.findById(id);
-            var alugueis = aluguelRep.findAllByAeroviaIdAndData(aerovia, dateTime);
+            var aerovia = aeroviaRep.findById(id);
+            System.out.println(dateTime.toString());
+            var alugueis = this.aluguelRep.findAllByAeroviaIdAndData(aerovia, dateTime);
+            System.out.println(alugueis);
             for (Aluguel aluguel : alugueis) {
                 int slot = aluguel.getAltitude();
                 slots.put(slot, slots.get(slot)+1);
             }
         }
-
         for (int key : slots.keySet()) {
             slots.put(key, (int) Math.round((double) slots.get(key) / 24 * 100));
         }
